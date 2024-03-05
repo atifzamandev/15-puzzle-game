@@ -5,17 +5,16 @@ import Button from '../Button/Button'
 
 const NUM_TILES = 15
 
-const GameBoard = () => {
-  const generateShuffledTiles = () => {
-    const tiles = Array.from({ length: NUM_TILES }, (_, i) => i + 1)
-    for (let i = tiles.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [tiles[i], tiles[j]] = [tiles[j], tiles[i]]
-    }
-    return tiles
+const generateShuffledTiles = () => {
+  const tiles = Array.from({ length: NUM_TILES }, (_, i) => i + 1)
+  for (let i = tiles.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[tiles[i], tiles[j]] = [tiles[j], tiles[i]]
   }
-
-  const [tiles, setTiles] = useState(generateShuffledTiles)
+  return tiles
+}
+const GameBoard = () => {
+  const [tiles, setTiles] = useState(generateShuffledTiles())
 
   const handleClick = (index: number) => {
     const newTiles = [...tiles]
